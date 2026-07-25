@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FrameX — Home</title>
+<link rel="icon" href="assets/icons/favicon.png" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="side-nav">
+    <div class="logo-mark">X</div>
+    <nav class="nav-items">
+      <button class="nav-item active" title="Home">🏠</button>
+      <button class="nav-item" id="navTemplates" title="Templates">🎞️</button>
+      <button class="nav-item" id="navAiTools" title="AI Tools">✨</button>
+      <button class="nav-item" id="navCloud" title="Cloud Projects">☁️</button>
+      <button class="nav-item" id="navSettings" title="Settings">⚙️</button>
+    </nav>
+    <div class="nav-avatar" id="navAvatar" title="Account">
+      <img id="avatarImg" src="" alt="" />
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="home-header">
+      <div>
+        <h1 class="text-headline" id="welcomeText">Welcome back</h1>
+        <p class="text-body-md" id="storageText">Loading your workspace…</p>
+      </div>
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Search projects, templates, effects…" />
+      </div>
+    </header>
+
+    <section class="quick-actions">
+      <div class="card quick-action primary" id="qaNewProject">
+        <div class="qa-icon">➕</div>
+        <div>
+          <h4 class="text-title-md">New Project</h4>
+          <p class="text-body-md" style="color:rgba(255,255,255,0.8);">Start editing from scratch</p>
+        </div>
+      </div>
+      <div class="card quick-action" id="qaImport">
+        <div class="qa-icon">📥</div>
+        <div><h4 class="text-title-md">Import Video</h4><p class="text-body-md">From device or cloud</p></div>
+      </div>
+      <div class="card quick-action" id="qaTemplates">
+        <div class="qa-icon">🎞️</div>
+        <div><h4 class="text-title-md">Templates</h4><p class="text-body-md">Ready-made styles</p></div>
+      </div>
+      <div class="card quick-action" id="qaAiTools">
+        <div class="qa-icon">✨</div>
+        <div><h4 class="text-title-md">AI Tools</h4><p class="text-body-md">Captions, cleanup &amp; more</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2 class="text-title-lg">Your Projects</h2>
+        <div class="section-tabs">
+          <button class="section-tab active" data-filter="all">All</button>
+          <button class="section-tab" data-filter="draft">Drafts</button>
+          <button class="section-tab" data-filter="editing">Continue Editing</button>
+          <button class="section-tab" data-filter="exported">Exported</button>
+        </div>
+      </div>
+      <div class="project-grid" id="projectGrid">
+        <!-- Skeleton loaders shown until Firestore responds -->
+        <div class="card project-card"><div class="skeleton" style="aspect-ratio:9/16;"></div></div>
+        <div class="card project-card"><div class="skeleton" style="aspect-ratio:9/16;"></div></div>
+        <div class="card project-card"><div class="skeleton" style="aspect-ratio:9/16;"></div></div>
+        <div class="card project-card"><div class="skeleton" style="aspect-ratio:9/16;"></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- New project modal -->
+<div class="modal-overlay" id="newProjectModal">
+  <div class="modal">
+    <h2 class="text-title-lg" style="margin-bottom:20px;">Create a new project</h2>
+    <div class="field" style="margin-bottom:16px;">
+      <label for="projectTitleInput">Project name</label>
+      <input class="input" type="text" id="projectTitleInput" placeholder="My awesome edit" />
+    </div>
+    <div class="field" style="margin-bottom:24px;">
+      <label>Aspect ratio</label>
+      <div class="flex gap-2">
+        <button class="btn btn-secondary aspect-choice active" data-ratio="9:16">9:16</button>
+        <button class="btn btn-secondary aspect-choice" data-ratio="16:9">16:9</button>
+        <button class="btn btn-secondary aspect-choice" data-ratio="1:1">1:1</button>
+        <button class="btn btn-secondary aspect-choice" data-ratio="4:5">4:5</button>
+      </div>
+    </div>
+    <div class="flex gap-3">
+      <button class="btn btn-secondary grow" id="newProjectCancel">Cancel</button>
+      <button class="btn btn-primary grow" id="newProjectCreate">Create Project</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="importFileInput" accept="video/*" class="hidden" />
+
+<script type="module" src="js/home.js"></script>
+</body>
+</html>

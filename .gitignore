@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local env / secrets (if you later move Firebase config to env injection)
+.env
+.env.local
+
+# Node (only relevant if you add tooling later — no build step today)
+node_modules/
+
+# Firebase local emulator/cache
+.firebase/
+firebase-debug.log
+firestore-debug.log

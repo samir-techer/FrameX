@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FrameX — Export</title>
+<link rel="icon" href="assets/icons/favicon.png" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/export.css" />
+</head>
+<body>
+
+<div class="export-page">
+  <header class="export-topbar">
+    <button class="btn-icon" id="backBtn">←</button>
+    <h1 class="text-title-lg">Export Project</h1>
+  </header>
+
+  <main class="export-body">
+    <!-- Left: preview + summary -->
+    <section class="export-preview">
+      <div class="export-preview-frame">
+        <video id="previewVideo" muted playsinline></video>
+      </div>
+      <div class="card export-summary-card">
+        <div class="row"><span class="text-secondary">Project</span><span id="summaryTitle">—</span></div>
+        <div class="row"><span class="text-secondary">Duration</span><span id="summaryDuration">—</span></div>
+        <div class="row"><span class="text-secondary">Resolution</span><span id="summaryResolution">1080p</span></div>
+        <div class="row"><span class="text-secondary">Frame Rate</span><span id="summaryFps">30 FPS</span></div>
+        <div class="row"><span class="text-secondary">Format</span><span id="summaryFormat">MP4</span></div>
+        <div class="row"><span class="text-secondary">Est. File Size</span><span id="summarySize">—</span></div>
+      </div>
+    </section>
+
+    <!-- Right: options -->
+    <section class="export-options">
+
+      <div class="option-group">
+        <h4>Resolution</h4>
+        <div class="option-row" id="resolutionRow"></div>
+      </div>
+
+      <div class="option-group">
+        <h4>Frame Rate</h4>
+        <div class="option-row" id="fpsRow"></div>
+      </div>
+
+      <div class="option-group">
+        <h4>Format</h4>
+        <div class="option-row" id="formatRow"></div>
+      </div>
+
+      <div class="option-group">
+        <h4>Bitrate</h4>
+        <div class="option-row" id="bitrateRow"></div>
+      </div>
+
+      <div class="option-group">
+        <div class="toggle-row">
+          <div><p class="text-title-md">Hardware acceleration</p><p class="text-body-md">Faster export using GPU encoding when available</p></div>
+          <label class="switch"><input type="checkbox" id="hwAccelToggle" checked /><span class="switch-track"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div><p class="text-title-md">Export in background</p><p class="text-body-md">Keep working while this project exports</p></div>
+          <label class="switch"><input type="checkbox" id="bgExportToggle" /><span class="switch-track"></span></label>
+        </div>
+      </div>
+
+      <div class="export-actions">
+        <button class="btn btn-primary btn-block" id="startExportBtn">Start Export</button>
+      </div>
+
+      <!-- Progress state (hidden until export starts) -->
+      <div class="card export-progress-card hidden" id="progressCard">
+        <p class="text-title-md" id="progressLabel">Exporting…</p>
+        <div class="pct" id="progressPct">0%</div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <button class="btn btn-secondary" id="cancelExportBtn" style="margin-top:20px;">Cancel</button>
+      </div>
+
+      <div class="history-list">
+        <h4 class="text-title-md" style="margin-bottom:12px;">Export History</h4>
+        <div id="historyList"><p class="text-body-md">No exports yet for this project.</p></div>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+<script type="module" src="js/export.js"></script>
+</body>
+</html>

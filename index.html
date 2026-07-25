@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FrameX — Create. Edit. Inspire.</title>
+<link rel="icon" href="assets/icons/favicon.png" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+<div class="offline-banner" id="offlineBanner">You're offline — some features may be unavailable.</div>
+
+<main class="auth-page">
+  <div class="auth-card fade-in">
+    <div class="auth-brand">
+      <div class="logo-mark">X</div>
+      <h1>FrameX</h1>
+      <p>Create. Edit. Inspire.</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Log In</button>
+      <button class="auth-tab" data-tab="signup">Sign Up</button>
+    </div>
+
+    <!-- LOGIN -->
+    <form class="auth-form" id="loginForm" data-panel="login">
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input class="input" type="email" id="loginEmail" placeholder="you@example.com" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input class="input" type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password" />
+        <div class="field-error" id="loginError"></div>
+      </div>
+      <button type="button" class="auth-link-inline" id="forgotPasswordBtn">Forgot password?</button>
+      <button type="submit" class="btn btn-primary btn-block" id="loginSubmit">Log In</button>
+    </form>
+
+    <!-- SIGN UP -->
+    <form class="auth-form hidden" id="signupForm" data-panel="signup">
+      <div class="field">
+        <label for="signupName">Full name</label>
+        <input class="input" type="text" id="signupName" placeholder="Jordan Rivera" required autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="signupEmail">Email</label>
+        <input class="input" type="email" id="signupEmail" placeholder="you@example.com" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="signupPassword">Password</label>
+        <input class="input" type="password" id="signupPassword" placeholder="At least 6 characters" required autocomplete="new-password" />
+        <div class="field-error" id="signupError"></div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="signupSubmit">Create Account</button>
+    </form>
+
+    <div class="auth-divider">OR CONTINUE WITH</div>
+
+    <div class="social-grid">
+      <button class="social-btn" id="googleBtn" aria-label="Continue with Google" title="Google">
+        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      </button>
+      <button class="social-btn" id="githubBtn" aria-label="Continue with GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.02 3.26 9.28 7.78 10.79.57.1.78-.25.78-.55v-2.15c-3.16.69-3.83-1.36-3.83-1.36-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.61 0-1.24.44-2.25 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.8 1.17 1.81 1.17 3.05 0 4.36-2.65 5.32-5.18 5.6.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A10.52 10.52 0 0 0 23.5 12.02C23.5 5.74 18.27.5 12 .5z"/></svg>
+      </button>
+      <button class="social-btn" id="facebookBtn" aria-label="Continue with Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.07C24 5.66 18.63.5 12 .5S0 5.66 0 12.07c0 5.79 4.39 10.59 10.13 11.43v-8.09H7.08v-3.34h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.89v2.27h3.33l-.53 3.34h-2.8v8.09C19.61 22.66 24 17.86 24 12.07z"/></svg>
+      </button>
+    </div>
+
+    <p class="auth-footer-link">
+      By continuing you agree to FrameX's <button type="button" style="color:var(--color-text-secondary);text-decoration:underline;">Terms</button> &amp; <button type="button" style="color:var(--color-text-secondary);text-decoration:underline;">Privacy Policy</button>.
+    </p>
+  </div>
+</main>
+
+<!-- Forgot password modal -->
+<div class="modal-overlay" id="resetModal">
+  <div class="modal">
+    <h2 class="text-title-lg" style="margin-bottom:8px;">Reset your password</h2>
+    <p class="text-body-md" style="margin-bottom:20px;">Enter your account email and we'll send a reset link.</p>
+    <div class="field">
+      <label for="resetEmail">Email</label>
+      <input class="input" type="email" id="resetEmail" placeholder="you@example.com" />
+      <div class="field-error" id="resetError"></div>
+    </div>
+    <div class="flex gap-3" style="margin-top:20px;">
+      <button class="btn btn-secondary grow" id="resetCancelBtn">Cancel</button>
+      <button class="btn btn-primary grow" id="resetSubmitBtn">Send Link</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/auth-page.js"></script>
+</body>
+</html>

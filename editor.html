@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FrameX — Editor</title>
+<link rel="icon" href="assets/icons/favicon.png" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/editor.css" />
+</head>
+<body>
+
+<div class="editor-shell">
+
+  <!-- Top bar -->
+  <header class="editor-topbar">
+    <div class="topbar-left">
+      <button class="btn-icon" id="backBtn" title="Back to Home">←</button>
+      <input class="project-title-input" id="projectTitleInput" value="Untitled Project" />
+      <span class="save-status" id="saveStatus"><span class="dot"></span> Saved</span>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-icon" id="undoBtn" title="Undo">↶</button>
+      <button class="btn-icon" id="redoBtn" title="Redo">↷</button>
+      <button class="btn btn-secondary btn-sm" id="saveBtn">Save</button>
+      <button class="btn btn-primary btn-sm" id="exportBtn">Export</button>
+    </div>
+  </header>
+
+  <div class="editor-body">
+
+    <!-- Tool rail -->
+    <nav class="tool-rail" id="toolRail">
+      <button class="tool-rail-btn active" data-panel="media"><span class="icon">🎞️</span>Media</button>
+      <button class="tool-rail-btn" data-panel="video"><span class="icon">🎛️</span>Video</button>
+      <button class="tool-rail-btn" data-panel="audio"><span class="icon">🎵</span>Audio</button>
+      <button class="tool-rail-btn" data-panel="text"><span class="icon">🔤</span>Text</button>
+      <button class="tool-rail-btn" data-panel="transitions"><span class="icon">🔀</span>Trans.</button>
+      <button class="tool-rail-btn" data-panel="effects"><span class="icon">💥</span>Effects</button>
+      <button class="tool-rail-btn" data-panel="filters"><span class="icon">🎨</span>Filters</button>
+      <button class="tool-rail-btn" data-panel="ai"><span class="icon">✨</span>AI Tools</button>
+    </nav>
+
+    <!-- Preview -->
+    <section class="preview-area">
+      <div class="preview-canvas-wrap" id="previewWrap">
+        <div class="preview-placeholder" id="previewPlaceholder">
+          <div class="emoji">🎬</div>
+          <p class="text-body-lg">Add a clip to get started</p>
+          <button class="btn btn-primary btn-sm" id="addMediaBtn">Add Media</button>
+        </div>
+        <video id="previewVideo" class="hidden" playsinline></video>
+      </div>
+      <div class="preview-controls hidden" id="previewControls">
+        <button id="playPauseBtn">▶</button>
+        <span class="preview-time"><span id="currentTime">0:00</span> / <span id="totalTime">0:00</span></span>
+        <button id="splitBtn" title="Split at playhead">✂️</button>
+      </div>
+    </section>
+
+    <!-- Side panels (one visible at a time, matched to tool-rail selection) -->
+    <aside class="side-panel" id="sidePanel">
+
+      <div data-panel="media">
+        <div class="panel-title"><h3 class="text-title-md">Media</h3></div>
+        <button class="btn btn-primary btn-block" id="uploadMediaBtn" style="margin-bottom:16px;">📥 Import from device</button>
+        <p class="text-body-md">Imported clips appear on your timeline below and can be dragged to reorder.</p>
+      </div>
+
+      <div data-panel="video" class="hidden">
+        <div class="panel-title"><h3 class="text-title-md">Video</h3></div>
+        <div class="slider-row">
+          <div class="slider-label"><span>Speed</span><span id="speedVal">1.0×</span></div>
+          <input type="range" id="speedSlider" min="0.1" max="10" step="0.1" value="1" />
+        </div>
+        <div class="slider-row">
+          <div class="slider-label"><span>Opacity</span><span id="opacityVal">100%</span></div>
+          <input type="range" id="opacitySlider" min="0" max="100" step="1" value="100" />
+        </div>
+        <div class="option-grid">
+          <button class="option-chip" data-action="crop">Crop</button>
+          <button class="option-chip" data-action="rotate">Rotate</button>
+          <button class="option-chip" data-action="flip">Flip</button>
+          <button class="option-chip" data-action="reverse">Reverse</button>
+          <button class="option-chip" data-action="freeze">Freeze Frame</button>
+          <button class="option-chip" data-action="resize">Resize</button>
+        </div>
+      </div>
+
+      <div data-panel="audio" class="hidden">
+        <div class="panel-title"><h3 class="text-title-md">Audio</h3></div>
+        <div class="slider-row">
+          <div class="slider-label"><span>Volume</span><span id="volumeVal">100%</span></div>
+          <input type="range" id="volumeSlider" min="0" max="100" step="1" value="100" />
+        </div>
+        <div class="option-grid">
+          <button class="option-chip" data-action="record">🎙️ Record</button>
+          <button class="option-chip" data-action="extract">Extract Audio</button>
+          <button class="option-chip" data-action="fadein">Fade In</button>
+          <button class="option-chip" data-action="fadeout">Fade Out</button>
+          <button class="option-chip" data-action="noise-reduce">Noise Reduction</button>
+          <button class="option-chip" data-action="beat-detect">Beat Detection</button>
+        </div>
+      </div>
+
+      <div data-panel="text" class="hidden">
+        <div class="panel-title"><h3 class="text-title-md">Text</h3></div>
+        <button class="btn btn-primary btn-block" id="addTextBtn" style="margin-bottom:16px;">+ Add Text</button>
+        <div class="option-grid">
+          <button class="option-chip" data-action="stroke">Stroke</button>
+          <button class="option-chip" data-action="shadow">Shadow</button>
+          <button class="option-chip" data-action="glow">Glow</button>
+          <button class="option-chip" data-action="typewriter">Typewriter</button>
+        </div>
+      </div>
+
+      <div data-panel="transitions" class="hidden">
+        <div class="panel-title"><h3 class="text-title-md">Transitions</h3></div>
+        <div class="option-grid" id="transitionGrid"></div>
+      </div>
+
+      <div data-panel="effects" class="hidden">
+        <div class="panel-title"><h3 class="text-title-md">Effects</h3></div>
+        <div class="option-grid" id="effectGrid"></div>
+      </div>
+
+      <div data-panel="filters" class="hidden">
+        <div class="panel-title"><h3 class="text-title-md">Filters</h3></div>
+        <div class="option-grid" id="filterGrid"></div>
+      </div>
+
+      <div data-panel="ai" class="hidden">
+        <div class="panel-title"><h3 class="text-title-md">AI Tools</h3></div>
+        <div id="aiToolList"></div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Timeline -->
+  <section class="timeline-area">
+    <div class="timeline-toolbar">
+      <div class="timeline-tools">
+        <button class="btn-icon btn-sm" id="trimBtn" title="Trim">✂️</button>
+        <button class="btn-icon btn-sm" id="splitTimelineBtn" title="Split">⑃</button>
+        <button class="btn-icon btn-sm" id="rippleDeleteBtn" title="Ripple Delete">🗑️</button>
+        <button class="btn-icon btn-sm active" id="snapBtn" title="Snap Mode">🧲</button>
+      </div>
+      <div class="timeline-zoom">
+        <button class="btn-icon btn-sm" id="zoomOutBtn">−</button>
+        <span class="text-body-md" id="zoomLabel">100%</span>
+        <button class="btn-icon btn-sm" id="zoomInBtn">+</button>
+      </div>
+    </div>
+    <div class="timeline-scroll" id="timelineScroll">
+      <div class="timeline-tracks" id="timelineTracks">
+        <div class="timeline-track" data-track="text">
+          <div class="track-label">🔤 Text</div>
+          <div class="track-lane" data-track-lane="text"></div>
+        </div>
+        <div class="timeline-track" data-track="video">
+          <div class="track-label">🎬 Video</div>
+          <div class="track-lane" data-track-lane="video"></div>
+        </div>
+        <div class="timeline-track" data-track="audio">
+          <div class="track-label">🎵 Audio</div>
+          <div class="track-lane" data-track-lane="audio"></div>
+        </div>
+        <div class="playhead" id="playhead" style="left:84px;"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<input type="file" id="mediaFileInput" accept="video/*,audio/*" class="hidden" multiple />
+
+<script type="module" src="js/editor.js"></script>
+</body>
+</html>

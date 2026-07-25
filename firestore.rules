@@ -1,0 +1,33 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---- users/{uid} ----
+    // A user can only read/write their own document. Role and premium
+    // fields can only be changed by trusted backend code (Cloud Functions
+    // using the Admin SDK bypass rules), never directly by the client,
+    // to prevent self-granting premium/admin access.
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid;
+      allow update: if request.auth != null
+                    && request.auth.uid == uid
+                    && request.resource.data.role == resource.data.role
+                    && request.resource.data.premiumPlan == resource.data.premiumPlan
+                    && request.resource.data.premiumExpiry == resource.data.premiumExpiry;
+      allow delete: if false;
+    }
+
+    // ---- projects/{projectId} ----
+    // Only the owner can read, create, update, or delete their projects.
+    match /projects/{projectId} {
+      allow read, update, delete: if request.auth != null
+                                   && request.auth.uid == resource.data.ownerId;
+      allow create: if request.auth != null
+                    && request.auth.uid == request.resource.data.ownerId
+                    && request.resource.data.title is string
+                    && request.resource.data.title.size() <= 200;
+    }
+  }
+}
