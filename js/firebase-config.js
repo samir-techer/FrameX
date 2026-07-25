@@ -1,23 +1,39 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+// ==========================================================================
+// FrameX — Firebase Initialization
+// Single source of truth for Firebase app/services. Every other module
+// imports `auth`, `db`, and `storage` from here instead of re-initializing.
+// ==========================================================================
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBvtYMj0vvVUQScRBmfiUKfCfkZ9n6KxGM",
-    authDomain: "video-editor-39143.firebaseapp.com",
-    projectId: "video-editor-39143",
-    storageBucket: "video-editor-39143.firebasestorage.app",
-    messagingSenderId: "42393703510",
-    appId: "1:42393703510:web:cdf790519c990ce81317f7",
-    measurementId: "G-MWGPKFM3M4"
-  };
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js';
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+} from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+import { getStorage } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js';
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+// ---------------------------------------------------------------------------
+// REPLACE with your own Firebase project config (Firebase Console >
+// Project Settings > General > Your apps > SDK setup and configuration).
+// These are safe to expose client-side — access is controlled by
+// Firestore/Storage Security Rules, not by hiding this object.
+// ---------------------------------------------------------------------------
+const firebaseConfig = {
+  apiKey: 'YOUR_FIREBASE_API_KEY',
+  authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
+  projectId: 'YOUR_PROJECT_ID',
+  storageBucket: 'YOUR_PROJECT_ID.appspot.com',
+  messagingSenderId: 'YOUR_SENDER_ID',
+  appId: 'YOUR_APP_ID',
+};
+
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+
+// Persist login across browser restarts (as opposed to session-only).
+setPersistence(auth, browserLocalPersistence).catch((err) => {
+  console.error('[firebase-config] Failed to set persistence:', err);
+});
