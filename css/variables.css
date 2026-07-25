@@ -1,0 +1,75 @@
+/* ==========================================================================
+   FrameX Design Tokens
+   Central source of truth for color, spacing, radius, and motion values.
+   Every other stylesheet references these variables instead of hardcoding
+   values, so the whole app can be re-themed from this one file.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --color-bg: #0d0d0d;
+  --color-surface: #181818;
+  --color-surface-elevated: #212121;
+  --color-surface-glass: rgba(255, 255, 255, 0.06);
+  --color-border: #2a2a2a;
+  --color-divider: #232323;
+
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b3b3b3;
+  --color-text-disabled: #6b6b6b;
+
+  /* Brand gradient (from FrameX logo mark) */
+  --color-brand-magenta: #e0189b;
+  --color-brand-purple: #8b2fe0;
+  --color-brand-blue: #3b4ce0;
+  --gradient-brand: linear-gradient(135deg, var(--color-brand-magenta) 0%, var(--color-brand-purple) 55%, var(--color-brand-blue) 100%);
+
+  /* Semantic */
+  --color-success: #33d17a;
+  --color-warning: #f4b400;
+  --color-error: #e0426d;
+  --color-info: #3b9ce0;
+
+  /* Timeline */
+  --color-clip-video: #3b4ce0;
+  --color-clip-audio: #33d17a;
+  --color-clip-text: #e0189b;
+  --color-playhead: #ffffff;
+
+  /* Radius */
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Shadows */
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-glow-purple: 0 0 32px rgba(139, 47, 224, 0.35);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 220ms;
+  --duration-slow: 400ms;
+
+  /* Typography */
+  --font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --nav-width: 88px;
+  --panel-width: 320px;
+  --topbar-height: 64px;
+  --timeline-height: 220px;
+}

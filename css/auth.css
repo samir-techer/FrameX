@@ -1,0 +1,160 @@
+/* ==========================================================================
+   FrameX — Auth Screen
+   ========================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow background, echoing the logo's gradient */
+.auth-page::before,
+.auth-page::after {
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.28;
+  z-index: 0;
+}
+.auth-page::before {
+  background: var(--color-brand-magenta);
+  top: -180px;
+  right: -140px;
+}
+.auth-page::after {
+  background: var(--color-brand-blue);
+  bottom: -180px;
+  left: -140px;
+}
+
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 100%);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-soft);
+}
+
+.auth-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  text-align: center;
+}
+.auth-brand .logo-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 24px;
+  background-image: var(--gradient-brand);
+}
+.auth-brand h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+.auth-brand p { color: var(--color-text-secondary); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+
+.auth-tabs {
+  display: flex;
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin-bottom: var(--space-6);
+}
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+.auth-tab.active {
+  background: var(--gradient-brand);
+  color: #fff;
+}
+
+.auth-form { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-6) 0;
+  color: var(--color-text-disabled);
+  font-size: 12px;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-divider);
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+.social-btn {
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+}
+.social-btn:hover { background: var(--color-border); transform: translateY(-1px); }
+.social-btn svg { width: 20px; height: 20px; }
+
+.auth-footer-link {
+  text-align: center;
+  margin-top: var(--space-6);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+.auth-footer-link button { color: var(--color-brand-magenta); font-weight: 600; }
+
+.auth-link-inline {
+  align-self: flex-end;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+.auth-link-inline:hover { color: var(--color-text-primary); }
+
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-warning);
+  color: #1a1300;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px;
+  transform: translateY(-100%);
+  transition: transform var(--duration-base) var(--ease-standard);
+  z-index: 999;
+}
+.offline-banner.show { transform: translateY(0); }
