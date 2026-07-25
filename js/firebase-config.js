@@ -20,12 +20,13 @@ import { getStorage } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-
 // Firestore/Storage Security Rules, not by hiding this object.
 // ---------------------------------------------------------------------------
 const firebaseConfig = {
-  apiKey: 'YOUR_FIREBASE_API_KEY',
-  authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_PROJECT_ID.appspot.com',
-  messagingSenderId: 'YOUR_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: "AIzaSyBvtYMj0vvVUQScRBmfiUKfCfkZ9n6KxGM",
+  authDomain: "video-editor-39143.firebaseapp.com",
+  projectId: "video-editor-39143",
+  storageBucket: "video-editor-39143.firebasestorage.app",
+  messagingSenderId: "42393703510",
+  appId: "1:42393703510:web:cdf790519c990ce81317f7",
+  measurementId: "G-MWGPKFM3M4"
 };
 
 export const app = initializeApp(firebaseConfig);
